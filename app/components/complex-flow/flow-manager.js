@@ -21,20 +21,37 @@ class StateThreeConfig extends StateConfig {
 
 class StateFourConfig extends StateConfig {
   on = {
+    NEXT: 'stateFive',
     BACK: 'stateTwo',
   };
+
+  exit(ctx) {
+    ctx.whereFrom = 'stateFour';
+  }
 }
 
 class StateFiveConfig extends StateConfig {
   on = {
-    BACK: 'stateTwo',
+    BACK: [
+      {
+        target: 'stateTwo',
+        cond: (context) => {
+          return context.whereFrom === 'stateTwo';
+        },
+      },
+      {
+        target: 'stateFour',
+      },
+    ],
   };
 }
 
-/** @type {import('@xstate/fsm').StateMachine.Config} */
 const FLOW_CONFIG = {
   id: 'stateExample',
   initial: 'stateOne',
+  context: {
+    whereFrom: '',
+  },
   states: {
     stateOne: new StateOneConfig(),
     stateTwo: new StateTwoConfig(),

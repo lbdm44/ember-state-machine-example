@@ -26,6 +26,10 @@ export class StateTwoConfig extends StateConfig {
     BACK: 'stateOne',
   };
 
+  exit(ctx) {
+    ctx.whereFrom = 'stateTwo';
+  }
+
   validate(MSG, context) {
     let validation = {
       isValid: !!MSG,
