@@ -4,3 +4,7 @@
   border: 1px solid black;
   border-radius: 4px;
 }
+
+.input-error {
+  color: red;
+}
