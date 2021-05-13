@@ -1,7 +1,12 @@
 <div>
   <ComplexFlow::FlowManager as |flowState updateFlow|>
-    Toggle State: {{flowState.value}}
-    <br />
-    <button {{on 'click' updateFlow}}>Toggle Me</button>
+    <h2>Current State: {{flowState.value}}</h2>
+    <div>
+      <ComplexFlow::FlowStatePicker
+        @flowState={{flowState}}
+        @updateFlow={{updateFlow}}
+      />
+    </div>
+
   </ComplexFlow::FlowManager>
 </div>

@@ -1,0 +1,40 @@
+{{#if (eq @flowState.value "stateOne")}}
+  <ComplexFlow::FlowStates::StateOne
+    @flowState={{@flowState}}
+    @updateFlow={{@updateFlow}}
+  />
+{{else if (eq @flowState.value "stateTwo")}}
+  <ComplexFlow::FlowStates::StateTwo
+    @flowState={{@flowState}}
+    @updateFlow={{@updateFlow}}
+  />
+{{else if (eq @flowState.value "stateThree")}}
+  <ComplexFlow::FlowStates::StateThree
+    @flowState={{@flowState}}
+    @updateFlow={{@updateFlow}}
+  />
+{{else if (eq @flowState.value "stateFour")}}
+  <ComplexFlow::FlowStates::StateFour
+    @flowState={{@flowState}}
+    @updateFlow={{@updateFlow}}
+  />
+{{else if (eq @flowState.value "stateFive")}}
+  <ComplexFlow::FlowStates::StateFive
+    @flowState={{@flowState}}
+    @updateFlow={{@updateFlow}}
+  />
+{{else}}
+  <h1>ERROR: {{@flowState.value}} not supported</h1>
+{{/if}}
+
+<StyledContainer>
+  <footer>
+    {{#if (has-event @flowState "BACK")}}
+      <button {{on "click" (fn @updateFlow "BACK")}}>Back</button>
+    {{/if}}
+
+    {{#if (has-event @flowState "NEXT")}}
+      <button {{on "click" (fn @updateFlow "NEXT")}}>NEXT</button>
+    {{/if}}
+  </footer>
+</StyledContainer>
