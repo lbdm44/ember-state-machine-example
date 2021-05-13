@@ -2,6 +2,20 @@
 
 <h1>With Footer Example</h1>
 
-<ComplexFlow />
+<ComplexFlow>
+  <:controls as |flowState updateFlow|>
+    <StyledContainer>
+      <footer>
+        {{#if (has-event flowState "BACK")}}
+          <button {{on "click" (fn updateFlow "BACK")}}>Back</button>
+        {{/if}}
+
+        {{#if (has-event flowState "NEXT")}}
+          <button {{on "click" (fn updateFlow "NEXT")}}>NEXT</button>
+        {{/if}}
+      </footer>
+    </StyledContainer>
+  </:controls>
+</ComplexFlow>
 
 {{outlet}}

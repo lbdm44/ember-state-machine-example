@@ -8,5 +8,9 @@
       />
     </div>
 
+    {{#if (has-block "controls")}}
+      {{yield flowState updateFlow to="controls"}}
+    {{/if}}
+
   </ComplexFlow::FlowManager>
 </div>

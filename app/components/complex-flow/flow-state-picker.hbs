@@ -28,21 +28,3 @@
     <h1>ERROR: {{stateName}} not supported</h1>
   {{/if}}
 {{/let}}
-
-{{!--
-  TODO:
-    - probably named block for optional rendering.
-    - Maybe better place for this is in complex-flow since that is what is invoked by the consumer.
---}}
-
-<StyledContainer>
-  <footer>
-    {{#if (has-event @flowState "BACK")}}
-      <button {{on "click" (fn @updateFlow "BACK")}}>Back</button>
-    {{/if}}
-
-    {{#if (has-event @flowState "NEXT")}}
-      <button {{on "click" (fn @updateFlow "NEXT")}}>NEXT</button>
-    {{/if}}
-  </footer>
-</StyledContainer>
