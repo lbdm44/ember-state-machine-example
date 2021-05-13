@@ -1,10 +1,10 @@
-import Controller from '@ember/controller';
+import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 import { createMachine, interpret } from '@xstate/fsm';
 
-export default class IndexController extends Controller {
+export default class ComplexFlowComponent extends Component {
   @tracked
   toggleState = 'inactive';
 
