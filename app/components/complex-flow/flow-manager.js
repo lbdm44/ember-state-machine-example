@@ -4,6 +4,7 @@ import { tracked } from '@glimmer/tracking';
 
 import { createMachine, interpret } from '@xstate/fsm';
 
+/** @type {import('@xstate/fsm').StateMachine.Config} */
 const FLOW_CONFIG = {
   id: 'stateExample',
   initial: 'stateOne',

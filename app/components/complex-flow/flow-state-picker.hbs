@@ -1,31 +1,33 @@
-{{#if (eq @flowState.value "stateOne")}}
-  <ComplexFlow::FlowStates::StateOne
-    @flowState={{@flowState}}
-    @updateFlow={{@updateFlow}}
-  />
-{{else if (eq @flowState.value "stateTwo")}}
-  <ComplexFlow::FlowStates::StateTwo
-    @flowState={{@flowState}}
-    @updateFlow={{@updateFlow}}
-  />
-{{else if (eq @flowState.value "stateThree")}}
-  <ComplexFlow::FlowStates::StateThree
-    @flowState={{@flowState}}
-    @updateFlow={{@updateFlow}}
-  />
-{{else if (eq @flowState.value "stateFour")}}
-  <ComplexFlow::FlowStates::StateFour
-    @flowState={{@flowState}}
-    @updateFlow={{@updateFlow}}
-  />
-{{else if (eq @flowState.value "stateFive")}}
-  <ComplexFlow::FlowStates::StateFive
-    @flowState={{@flowState}}
-    @updateFlow={{@updateFlow}}
-  />
-{{else}}
-  <h1>ERROR: {{@flowState.value}} not supported</h1>
-{{/if}}
+{{#let @flowState.value as |stateName|}}
+  {{#if (eq stateName "stateOne")}}
+    <ComplexFlow::FlowStates::StateOne
+      @flowState={{@flowState}}
+      @updateFlow={{@updateFlow}}
+    />
+  {{else if (eq stateName "stateTwo")}}
+    <ComplexFlow::FlowStates::StateTwo
+      @flowState={{@flowState}}
+      @updateFlow={{@updateFlow}}
+    />
+  {{else if (eq stateName "stateThree")}}
+    <ComplexFlow::FlowStates::StateThree
+      @flowState={{@flowState}}
+      @updateFlow={{@updateFlow}}
+    />
+  {{else if (eq stateName "stateFour")}}
+    <ComplexFlow::FlowStates::StateFour
+      @flowState={{@flowState}}
+      @updateFlow={{@updateFlow}}
+    />
+  {{else if (eq stateName "stateFive")}}
+    <ComplexFlow::FlowStates::StateFive
+      @flowState={{@flowState}}
+      @updateFlow={{@updateFlow}}
+    />
+  {{else}}
+    <h1>ERROR: {{stateName}} not supported</h1>
+  {{/if}}
+{{/let}}
 
 {{!--
   TODO:
