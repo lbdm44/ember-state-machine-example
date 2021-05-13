@@ -4,54 +4,13 @@ import { tracked } from '@glimmer/tracking';
 
 import { createMachine, interpret } from '@xstate/fsm';
 
-// TODO: co-locate state configs
-
-class StateConfig {
-  get on() {
-    throw new Error('You must create an `on` field');
-  }
-
-  hasEventHandler(MSG) {
-    return Object.keys(this.on).includes(MSG);
-  }
-
-  validate() {
-    return { isValid: true };
-  }
-}
+import StateConfig from '../../utils/state-config';
+import { StateTwoConfig } from './flow-states/state-two';
 
 class StateOneConfig extends StateConfig {
   on = {
     NEXT: 'stateTwo',
   };
-}
-
-class StateTwoConfig extends StateConfig {
-  on = {
-    SELECT_THREE: 'stateThree',
-    SELECT_FOUR: 'stateFour',
-    SELECT_FIVE: 'stateFive',
-    BACK: 'stateOne',
-  };
-
-  validate(MSG, context) {
-    const validation = {
-      isValid: !!MSG,
-    };
-
-    // If we are going from two to three, validate that we have a valid title.
-    if (MSG === 'SELECT_THREE') {
-      if (context === '') {
-        validation.isValid = false;
-        validation.error = 'Please provide a title!';
-      } else if (context.length < 3) {
-        validation.isValid = false;
-        validation.error = 'Title must be three characters or longer!';
-      }
-    }
-
-    return validation;
-  }
 }
 
 class StateThreeConfig extends StateConfig {
