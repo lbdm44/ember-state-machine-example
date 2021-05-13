@@ -65,5 +65,8 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "dependencies": {
+    "@xstate/fsm": "^1.6.0"
   }
 }
