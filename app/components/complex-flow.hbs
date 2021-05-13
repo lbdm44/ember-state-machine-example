@@ -1,5 +1,7 @@
 <div>
-  Toggle State: {{this.toggleState}}
-  <br />
-  <button {{on 'click' this.onToggle}}>Toggle Me</button>
+  <ComplexFlow::FlowManager as |flowState updateFlow|>
+    Toggle State: {{flowState.value}}
+    <br />
+    <button {{on 'click' updateFlow}}>Toggle Me</button>
+  </ComplexFlow::FlowManager>
 </div>
