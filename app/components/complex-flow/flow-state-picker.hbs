@@ -27,6 +27,12 @@
   <h1>ERROR: {{@flowState.value}} not supported</h1>
 {{/if}}
 
+{{!--
+  TODO:
+    - probably named block for optional rendering.
+    - Maybe better place for this is in complex-flow since that is what is invoked by the consumer.
+--}}
+
 <StyledContainer>
   <footer>
     {{#if (has-event @flowState "BACK")}}
