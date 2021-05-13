@@ -39,7 +39,7 @@ class StateTwoConfig extends StateConfig {
       isValid: !!MSG,
     };
 
-    // If we are going from two to three, do not validate.
+    // If we are going from two to three, validate that we have a valid title.
     if (MSG === 'SELECT_THREE') {
       if (context === '') {
         validation.isValid = false;
