@@ -2,10 +2,11 @@
   <h3>State Two: {{this.title}}</h3>
   <label for="state-two-title">Title:</label>
   <Input
-    @id="state-two-title"
+    id="state-two-title"
     @type="text"
     @value={{this.title}}
   />
+
   <br>
   {{#if this.error}}
     <span class="input-error">
@@ -13,15 +14,31 @@
     </span>
   {{/if}}
   <br>
+  {{#if @isValidating}}
+    ... validating ...
+  {{/if}}
+  <br>
 
   <button
+    type="button"
     disabled={{this.error}}
     {{on "click" (fn @updateFlow "SELECT_THREE" this.title)}}
   >
     Go To Three
   </button>
 
-  <button {{on "click" (fn @updateFlow "SELECT_FOUR" this.title)}}>Go To Four</button>
+  <button
+    type="button"
+    disabled={{@isValidating}}
+    {{on "click" (fn @updateFlow "SELECT_FOUR" this.title)}}
+  >
+    Go To Four
+  </button>
 
-  <button {{on "click" (fn @updateFlow "SELECT_FIVE" this.title)}}>Go To Five</button>
+  <button
+    type="button"
+    {{on "click" (fn @updateFlow "SELECT_FIVE" this.title)}}
+  >
+    Go To Five
+  </button>
 </StyledContainer>

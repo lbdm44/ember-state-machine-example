@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import StateConfig from '../../../utils/state-config';
 
-function validate(title) {
+function validateTitle(title) {
   const validation = {
     isValid: true,
   };
@@ -18,6 +18,16 @@ function validate(title) {
   return validation;
 }
 
+function validateStateFour() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        isValid: true,
+      });
+    }, 500);
+  });
+}
+
 export class StateTwoConfig extends StateConfig {
   on = {
     SELECT_THREE: 'stateThree',
@@ -30,14 +40,16 @@ export class StateTwoConfig extends StateConfig {
     ctx.whereFrom = 'stateTwo';
   }
 
-  validate(MSG, context) {
+  async validate(MSG, context) {
     let validation = {
       isValid: !!MSG,
     };
 
     // If we are going from two to three, validate that we have a valid title.
     if (MSG === 'SELECT_THREE') {
-      validation = validate(context);
+      validation = validateTitle(context);
+    } else if (MSG === 'SELECT_FOUR') {
+      validation = await validateStateFour();
     }
 
     return validation;
@@ -49,6 +61,6 @@ export default class StateTwoComponent extends Component {
   title = '';
 
   get error() {
-    return validate(this.title).error;
+    return validateTitle(this.title).error;
   }
 }

@@ -65,10 +65,10 @@ function getStateConfig(currentState) {
   return FLOW_CONFIG.states[currentState.value];
 }
 
-export function validateTransition(currentState, MSG, context) {
+export async function validateTransition(currentState, MSG, context) {
   const stateConfig = getStateConfig(currentState);
 
-  return stateConfig?.validate(MSG, context);
+  return await stateConfig?.validate(MSG, context);
 }
 
 export function hasNamedEvent(currentState, MSG) {
@@ -85,6 +85,9 @@ export default class FlowManagerComponent extends Component {
   @tracked
   flowState;
 
+  @tracked
+  isValidating = false;
+
   constructor() {
     super(...arguments);
 
@@ -98,8 +101,13 @@ export default class FlowManagerComponent extends Component {
   }
 
   @action
-  updateFlow(MSG, ctx) {
-    const validation = validateTransition(this.flowState, MSG, ctx);
+  async updateFlow(MSG, ctx) {
+    // Might want to place this on the context of the state machine instead of here, also would need to make that "tracked" so we can track it in the UI.
+    this.isValidating = true;
+
+    const validation = await validateTransition(this.flowState, MSG, ctx);
+
+    this.isValidating = false;
 
     if (!validation.isValid) {
       alert(`Invalid transition!: ${validation.error}`);

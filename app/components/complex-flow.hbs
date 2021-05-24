@@ -1,9 +1,10 @@
 <div>
-  <ComplexFlow::FlowManager as |flowState updateFlow|>
+  <ComplexFlow::FlowManager as |flowState isValidating updateFlow|>
     <h2>Current State: {{flowState.value}}</h2>
     <div>
       <ComplexFlow::FlowStatePicker
         @flowState={{flowState}}
+        @isValidating={{isValidating}}
         @updateFlow={{updateFlow}}
       />
     </div>
